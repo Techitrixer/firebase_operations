@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+</head>
+<body>
+    <div id="user_div">
+        <button style="float:right; width:50px; height:50px;" class="btn credit-btn mt-30" onclick="user_logout()">Logout</button>
+        <h1>dude</h1>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC8GJ3YgxCbA6rnMqtAFFRhWGJmmRkNwmA",
+            authDomain: "techi-samples.firebaseapp.com",
+            databaseURL: "https://techi-samples.firebaseio.com",
+            projectId: "techi-samples",
+            storageBucket: "techi-samples.appspot.com",
+            messagingSenderId: "807371367086",
+            appId: "1:807371367086:web:684d9c5b4c2abe0dcc433f",
+            measurementId: "G-CNWZBBGXNM"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="js/auth_features.js"></script>
+</body>
+</html>

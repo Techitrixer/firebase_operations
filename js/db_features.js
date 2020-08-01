@@ -1,15 +1,30 @@
-var databaseRef = firebase.database().ref('table1/');
+// var databaseRef = firebase.database().ref('table1/');
+var table1ref = firebase.database().ref().child("table1");
+var table2ref = firebase.database().ref().child("table2");
 
-function jrs_contact(){
-	var field1 = document.getElementById('field1').value;
-	var field2 = document.getElementById('field2').value;
+table1ref.on("child_added",snap => {
+	var title = snap.child("title").val();
+	var message = snap.child("message").val();
+	$("#table1-data").append("title : " + title + "<br>message : " + message + "<br>")
+});
+
+table2ref.on("child_added",snap => {
+	var title = snap.child("title").val();
+	var message = snap.child("message").val();
+	$("#table2-data").append("title : " + title + "<br>message : " + message + "<br>")
+});
+
+
+function add_to_table1(){
+	var title = document.getElementById('title1').value;
+	var message = document.getElementById('message1').value;
 
 	var uid = firebase.database().ref().child('table1').push().key;
 
 	var data = {
 		user_id: uid,
-		field1: field1,
-		field2: field2
+		title: title,
+		message: message
 	}
 
 	var updates = {};
@@ -17,4 +32,27 @@ function jrs_contact(){
 	firebase.database().ref().update(updates);
 
 	reload_page();
+}
+
+function add_to_table2(){
+	var title = document.getElementById('title2').value;
+	var message = document.getElementById('message2').value;
+
+	var uid = firebase.database().ref().child('table2').push().key;
+
+	var data = {
+		user_id: uid,
+		title: title,
+		message: message
+	}
+
+	var updates = {};
+	updates['/table2/' + uid] = data;
+	firebase.database().ref().update(updates);
+
+	reload_page();
+}
+
+function reload_page(){
+	window.location.reload();
 }
